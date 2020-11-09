@@ -2,5 +2,5 @@
 .idea/
 target/
 *.iml
-/pojo-generator/build/
-/pojo-generator-install/src/site/markdown/
+/poidem-generator/build/
+/poidem-generator-install/src/site/markdown/
