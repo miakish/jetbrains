@@ -1,16 +1,17 @@
 package ru.poidem.intellij.plugins.action.project;
 
-import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.ide.fileTemplates.FileTemplate;
 import com.intellij.ide.fileTemplates.FileTemplateManager;
 import com.intellij.ide.fileTemplates.FileTemplateUtil;
-import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.util.PropertiesUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
@@ -105,7 +106,7 @@ public class PoidemClass extends AnAction {
         List<Module> modules = new ArrayList<>();
         if (project != null && dataContext!=null) {
 
-            VirtualFile[] files = DataKeys.VIRTUAL_FILE_ARRAY.getData(dataContext);
+            VirtualFile[] files = LangDataKeys.VIRTUAL_FILE_ARRAY.getData(dataContext);
             if (files!=null) {
                 final List<VirtualFile> filesList = Arrays.asList(files);
 

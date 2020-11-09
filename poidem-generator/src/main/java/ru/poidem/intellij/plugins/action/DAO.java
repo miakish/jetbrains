@@ -12,6 +12,7 @@ import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
@@ -57,7 +58,7 @@ public class DAO extends AnAction {
             }
 
             PackageInfo packageInfo = Util.loadPackageInfo((DbPackage) psiElement, jpaMappingSettings);
-            VirtualFile chooseFile = project.getBaseDir();
+            VirtualFile chooseFile = ProjectUtil.guessProjectDir(project);
             FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
             if (null != lastChoosedFile) {
                 chooseFile = lastChoosedFile;
