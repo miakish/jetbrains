@@ -18,11 +18,11 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version 'IU-2020.2'
+    version 'IU-2020.3'
     plugins = ['java', 'DatabaseTools']
     updateSinceUntilBuild false
 }
 
 patchPluginXml {
-    sinceBuild '202'
+    sinceBuild '203'
 }
