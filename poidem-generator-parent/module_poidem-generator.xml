@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_poidem-generator" default="compile.module.poidem-generator">
+  <dirname property="module.poidem-generator.basedir" file="${ant.file.module_poidem-generator}"/>
+  
+  <property name="module.jdk.home.poidem-generator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.poidem-generator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.poidem-generator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.poidem-generator" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="poidem-generator.output.dir" value="${module.poidem-generator.basedir}/out/production/poidem-generator"/>
+  <property name="poidem-generator.testoutput.dir" value="${module.poidem-generator.basedir}/out/test/poidem-generator"/>
+  
+  <path id="poidem-generator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="poidem-generator.module.production.classpath">
+    <path refid="${module.jdk.classpath.poidem-generator}"/>
+  </path>
+  
+  <path id="poidem-generator.runtime.production.module.classpath">
+    <pathelement location="${poidem-generator.output.dir}"/>
+  </path>
+  
+  <path id="poidem-generator.module.classpath">
+    <path refid="${module.jdk.classpath.poidem-generator}"/>
+    <pathelement location="${poidem-generator.output.dir}"/>
+  </path>
+  
+  <path id="poidem-generator.runtime.module.classpath">
+    <pathelement location="${poidem-generator.testoutput.dir}"/>
+    <pathelement location="${poidem-generator.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.poidem-generator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.poidem-generator">
+    <patternset refid="excluded.from.module.poidem-generator"/>
+  </patternset>
+  
+  <path id="poidem-generator.module.sourcepath">
+    <dirset dir="${module.poidem-generator.basedir}">
+      <include name="src"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.poidem-generator" depends="compile.module.poidem-generator.production,compile.module.poidem-generator.tests" description="Compile module poidem-generator"/>
+  
+  <target name="compile.module.poidem-generator.production" depends="register.custom.compilers" description="Compile module poidem-generator; production classes">
+    <mkdir dir="${poidem-generator.output.dir}"/>
+    <javac2 destdir="${poidem-generator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.poidem-generator}/javac">
+      <compilerarg line="${compiler.args.poidem-generator}"/>
+      <bootclasspath refid="poidem-generator.module.bootclasspath"/>
+      <classpath refid="poidem-generator.module.production.classpath"/>
+      <src refid="poidem-generator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.poidem-generator"/>
+    </javac2>
+    
+    <copy todir="${poidem-generator.output.dir}">
+      <fileset dir="${module.poidem-generator.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.poidem-generator.basedir}/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.poidem-generator.tests" depends="register.custom.compilers,compile.module.poidem-generator.production" description="compile module poidem-generator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.poidem-generator" description="cleanup module">
+    <delete dir="${poidem-generator.output.dir}"/>
+    <delete dir="${poidem-generator.testoutput.dir}"/>
+  </target>
+  
+  <property name="poidem-generator.plugin.path.jar" value="${module.poidem-generator.basedir}/poidem-generator.jar"/>
+  
+  <!-- Build archive for plugin 'poidem-generator' -->
+  <target name="plugin.build.jar.poidem-generator" depends="compile.module.poidem-generator" description="Build plugin archive for module &#39;poidem-generator&#39;">
+    <jar destfile="${poidem-generator.plugin.path.jar}" duplicate="preserve">
+      <zipfileset dir="${module.poidem-generator.basedir}/out/production/poidem-generator"/>
+      <zipfileset file="${module.poidem-generator.basedir}/resources/META-INF/plugin.xml" prefix="META-INF"/>
+      <manifest>
+        <attribute name="Created-By" value="IntelliJ IDEA"/>
+        <attribute name="Manifest-Version" value="1.0"/>
+      </manifest>
+    </jar>
+  </target>
+</project>

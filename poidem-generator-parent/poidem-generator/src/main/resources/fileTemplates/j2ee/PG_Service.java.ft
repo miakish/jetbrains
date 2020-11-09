@@ -1,0 +1,13 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import ru.poidem.orm.dao.GenericObjectDaoManager;
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * Сервис для {@link ${NAME}}
+ */
+public interface ${NAME}Service extends GenericObjectDaoManager<${NAME}> {
+
+}

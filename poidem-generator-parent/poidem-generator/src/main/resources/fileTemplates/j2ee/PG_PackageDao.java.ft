@@ -1,0 +1,11 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * Дао для пакета ${PackageName}
+ */
+public interface ${NAME}PackageDao {
+
+}

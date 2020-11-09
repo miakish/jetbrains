@@ -1,0 +1,15 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import ru.poidem.convert.AbstractEnumConverter;
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * Конвертер для {@link ${NAME}}
+ */
+public class ${NAME}Converter extends AbstractEnumConverter<${NAME}, Long> {
+    public ${NAME}Converter() {
+        super(${NAME}.class);
+    }
+}

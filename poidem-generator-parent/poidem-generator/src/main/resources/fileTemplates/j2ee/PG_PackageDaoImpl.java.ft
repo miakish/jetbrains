@@ -1,0 +1,25 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import org.springframework.stereotype.Repository;
+import ru.poidem.orm.dao.impl.AbstractPackageDaoImpl;
+
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * Реализация {@link ${NAME}PackageDao}
+ */
+@Repository
+public class ${NAME}PackageDaoImpl extends AbstractPackageDaoImpl implements ${NAME}PackageDao {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getPackageName() {
+
+        return "${PackageName}";
+    }
+
+}

@@ -1,0 +1,20 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import org.springframework.stereotype.Service;
+import ru.poidem.orm.dao.impl.AbstractObjectDaoServiceImpl;
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * Реализация {@link ${NAME}Service}
+ */
+@Service
+public class ${NAME}ServiceImpl extends AbstractObjectDaoServiceImpl<${NAME}> implements ${NAME}Service {
+
+	@Override
+	public Class<${NAME}> getSupportedClass() {
+		return ${NAME}.class;
+	}
+
+}

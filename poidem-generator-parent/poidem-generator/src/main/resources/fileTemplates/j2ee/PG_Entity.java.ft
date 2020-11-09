@@ -1,0 +1,23 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import ru.poidem.dto.AbstractObject;
+import ru.poidem.dto.Sequence;
+import javax.persistence.*;
+${IMPORTS}
+
+/**
+ * ${JIRA} ${DATE}
+ * @author ${USER}
+ * ${COMMENT}
+ */
+@Getter
+@Setter
+@Entity(name = "${PACKAGE_NAME}.${NAME}")
+@Table(schema = "${SCHEMA}", name = "${TABLE_NAME}")
+@Sequence("${SCHEMA}.SEQ_${TABLE_NAME}")
+#if (${ID_NAME} && ${ID_NAME} != "")@AttributeOverride(name = "id", column = @Column(name = "${ID_NAME}"))#end
+public class ${NAME} extends AbstractObject {
+
+${FIELDS}
+}

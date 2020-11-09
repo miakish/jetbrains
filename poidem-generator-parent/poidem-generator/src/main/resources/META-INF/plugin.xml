@@ -1,0 +1,43 @@
+<idea-plugin>
+    <id>ru.poidem.intellij.plugins.poidem-generator</id>
+    <name>Poidem Generator</name>
+    <vendor email="ssalnikov@poidem.ru" url="">SSalnikov</vendor>
+
+    <description><![CDATA[
+    <h1>Generate JPA Entity Poidem from database table</h1>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <ul>
+        <li>[Add] Possibility to customize the JPA mapping</li>
+    </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.ultimate</depends>
+    <depends>com.intellij.modules.database</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <projectConfigurable groupId="tools" displayName="Poidem Generator" id="poidem-generator" instance="ru.poidem.intellij.plugins.ui.PoidemConfigurable">
+            <configurable id="poidem-generator.jpa-mapping" displayName="JPA Mapping" instance="ru.poidem.intellij.plugins.ui.JPAMappingConfigurable"/>
+        </projectConfigurable>
+        <projectService serviceImplementation="ru.poidem.intellij.plugins.ui.PoidemSettings"/>
+        <projectService serviceImplementation="ru.poidem.intellij.plugins.ui.JPAMappingSettings"/>
+        <fileTemplateGroup implementation="ru.poidem.intellij.plugins.template.FileTemplatesFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="org.jetbrains.tutorials.actions.GroupedActions" text="Poidem Generator" popup="true" icon="/META-INF/pluginIcon.svg">
+            <add-to-group group-id="DatabaseViewPopupMenu" anchor="after" relative-to-action="DatabaseView.RunExtensionScriptGroup"/>
+            <action id="entity" class="ru.poidem.intellij.plugins.action.Entity" text="Entity" description="Generate an Entity" icon="/META-INF/pluginIcon.svg"/>
+            <action id="dtocol" class="ru.poidem.intellij.plugins.action.DtoCol" text="DTO+@Col" description="Generate a Data Transfert Object"/>
+            <action id="dto" class="ru.poidem.intellij.plugins.action.DTO" text="DTO" description="Generate a Data Transfert Object"/>
+            <action id="dao" class="ru.poidem.intellij.plugins.action.DAO" text="DAO" description="Generate a Data Access Object"/>
+        </group>
+        <action id="PoidemTemplate" class="ru.poidem.intellij.plugins.action.project.PoidemTemplate" text="Poidem Generator">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>
+        </action>
+    </actions>
+</idea-plugin>
