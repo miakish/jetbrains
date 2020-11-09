@@ -20,6 +20,7 @@ import ru.poidem.intellij.plugins.util.Field;
 import ru.poidem.intellij.plugins.util.TableInfo;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import git4idea.branch.GitBranchUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,8 +73,6 @@ public class Entity extends AnAction {
 
             StringBuilder importsField = new StringBuilder();
             Map<String,String> imports = new HashMap<>();
-            importsField.append("import lombok.Getter;").append("\n");
-            importsField.append("import lombok.Setter;").append("\n");
             for (Field field : fields) {
                 if(StringUtils.isNotEmpty(field.getJavaImportType()) && !imports.containsKey(field.getJavaImportType()))
                 {
@@ -81,13 +80,11 @@ public class Entity extends AnAction {
                     imports.put(field.getJavaImportType(),"");
                 }
             }
-            importsField.append("import ru.poidem.dto.AbstractObject;").append("\n");
-            importsField.append("import ru.poidem.dto.Sequence;").append("\n");
-            importsField.append("import javax.persistence.*;").append("\n");
 
             Map<String, String> additionalProperties = new HashMap<>();
             additionalProperties.put("IMPORTS", importsField.toString());
             additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             String className = javaName(tableInfo.getTableName(), true);
 

@@ -4,7 +4,44 @@
     <vendor email="ssalnikov@poidem.ru" url="">SSalnikov</vendor>
 
     <description><![CDATA[
-    <h1>Generate JPA Entity Poidem from database table</h1>
+    <h1>Сreating Java classes using templates inside the plugin</h1>
+    <br/>
+    Can generate from database table:<br/>
+    <ul>
+        <li>an JPA Entity
+            <ul>
+                <li>There is no relationship between table</li>
+                <li>JPA annotations are generates over attributes</li>
+            </ul>
+        </li>
+        <li>a Data Transfert Object</li>
+    </ul>
+    <br/>
+    Can generate Java files (automatic filling of the GIT_BRANCH variable):<br/>
+    <ul>
+        <li>Class</li>
+        <li>Enum</li>
+        <li>Interface</li>
+        <li>specific templates for my company
+            <ul>
+                <li>DbEnum Integer</li>
+                <li>DbEnum Long</li>
+                <li>DbEnum String</li>
+                <li>Dto</li>
+                <li>DtoCol</li>
+                <li>Entity</li>
+                <li>EnumConverter Integer</li>
+                <li>EnumConverter Long</li>
+                <li>EnumConverter String</li>
+                <li>Job</li>
+                <li>PackageDao</li>
+                <li>PackageDaoImpl</li>
+                <li>Service</li>
+                <li>ServiceImpl</li>
+            </ul>
+        </li>
+    </ul>
+    <br/>
     ]]></description>
 
     <change-notes><![CDATA[

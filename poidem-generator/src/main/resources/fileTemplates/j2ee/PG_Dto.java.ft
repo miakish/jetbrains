@@ -6,7 +6,7 @@ import lombok.Setter;
 ${IMPORTS}
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * ${COMMENT}
  */

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.poidem.orm.dao.impl.AbstractObjectDaoServiceImpl;
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * Реализация {@link ${NAME}Service}
  */

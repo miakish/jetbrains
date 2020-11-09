@@ -4,7 +4,7 @@
 import ru.poidem.convert.AbstractEnumConverter;
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * Конвертер для {@link ${NAME}}
  */

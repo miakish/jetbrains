@@ -2,7 +2,7 @@
 #parse("File Header.java")
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * Дао для пакета ${PackageName}
  */

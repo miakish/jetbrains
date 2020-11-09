@@ -1,7 +1,7 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 #parse("File Header.java")
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * ${COMMENT}
  */

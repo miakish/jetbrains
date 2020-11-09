@@ -18,6 +18,7 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
+import git4idea.branch.GitBranchUtil;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.Field;
@@ -86,6 +87,7 @@ public class DtoCol extends AnAction {
             Map<String, String> additionalProperties = new HashMap<>();
             additionalProperties.put("IMPORTS", importsField.toString());
             additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             StringBuilder columnFields = new StringBuilder();
 

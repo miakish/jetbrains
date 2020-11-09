@@ -14,7 +14,11 @@ import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import com.intellij.ui.IconManager;
 import com.intellij.util.IncorrectOperationException;
+import git4idea.branch.GitBranchUtil;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 09.11.2020
@@ -64,7 +68,10 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
 
     @Override
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName) throws IncorrectOperationException {
-        return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true);
+        final Project project = dir.getProject();
+        Map<String, String> additionalProperties = new HashMap<>();
+        additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
+        return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true, additionalProperties);
     }
 
 }

@@ -4,10 +4,12 @@
 import ru.poidem.dto.AbstractObject;
 import ru.poidem.dto.Sequence;
 import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 ${IMPORTS}
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * ${COMMENT}
  */

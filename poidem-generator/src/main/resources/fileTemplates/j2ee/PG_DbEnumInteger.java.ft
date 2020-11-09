@@ -6,7 +6,7 @@ import lombok.Getter;
 import ru.poidem.enums.IntegerEnum;
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * ${COMMENT}
  */

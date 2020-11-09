@@ -10,7 +10,7 @@ import ru.poidem.oas.enums.SystemType;
 import ru.poidem.oas.job.AbstractProductionJob;
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * ${COMMENT}
  */

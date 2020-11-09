@@ -6,7 +6,7 @@ import ru.poidem.orm.dao.impl.AbstractPackageDaoImpl;
 
 
 /**
- * ${JIRA} ${DATE}
+ * ${GIT_BRANCH} ${DATE}
  * @author ${USER}
  * Реализация {@link ${NAME}PackageDao}
  */
