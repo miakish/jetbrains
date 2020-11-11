@@ -1,12 +1,9 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 #parse("File Header.java")
 
-import java.util.Arrays;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-import ru.poidem.oas.enums.SystemType;
+import org.springframework.stereotype.Component
 import ru.poidem.oas.job.AbstractProductionJob;
 
 /**
@@ -28,10 +25,4 @@ public class ${NAME}Job extends AbstractProductionJob {
 	protected void bodyJob() {
 		
 	}
-	
-	@Override
-	protected List<SystemType> getWhereToRun() {
-		return Arrays.asList(SystemType.TEST);
-	}
-
 }

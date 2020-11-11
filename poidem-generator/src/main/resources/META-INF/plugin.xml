@@ -46,7 +46,7 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>[Add] Possibility to customize the JPA mapping</li>
+        <li>[Dell] SystemType from Job template</li>
     </ul>
     ]]></change-notes>
 
