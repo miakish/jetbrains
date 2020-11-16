@@ -19,6 +19,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
 import git4idea.branch.GitBranchUtil;
+import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.Field;
@@ -120,7 +121,7 @@ public class DtoCol extends AnAction {
         if (actionText.isEmpty()) {
             actionText = anActionEvent.getPresentation().getText();
         }
-        anActionEvent.getPresentation().setIcon(AllIcons.Nodes.DataTables);
+        anActionEvent.getPresentation().setIcon(DatabaseIcons.ColDot);
         checkActionVisibility(anActionEvent, actionText);
         super.update(anActionEvent);
     }

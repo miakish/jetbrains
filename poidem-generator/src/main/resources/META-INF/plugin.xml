@@ -38,6 +38,9 @@
                 <li>PackageDaoImpl</li>
                 <li>Service</li>
                 <li>ServiceImpl</li>
+                <li>Controller</li>
+                <li>RestController</li>
+                <li>Validator</li>
             </ul>
         </li>
     </ul>
@@ -45,8 +48,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <ul>
-        <li>[Dell] SystemType from Job template</li>
+    <ul>PG_Class.java.ft
+        <li>[Add] New template icons</li>
+        <li>[Fix] Job template</li>
+        <li>[Add] Controller, RestController, Validator templates</li>
     </ul>
     ]]></change-notes>
 

@@ -1,0 +1,25 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+
+/**
+ * ${GIT_BRANCH} ${DATE}
+ * @author ${USER}
+ * ${COMMENT}
+ */
+@Slf4j
+@Component
+public class ${NAME}Validator extends BoValidator<${NAME}Dto> {
+
+    public ${NAME}Validator() {
+        super();
+    }
+
+    @Override
+    public void boValidate(${NAME}Dto dto, Errors errors) {
+        //errors.rejectValue("", "field.wrong", "");
+    }
+}

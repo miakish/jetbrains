@@ -16,6 +16,7 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
+import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.*;
@@ -127,7 +128,7 @@ public class DAO extends AnAction {
         if (actionText.isEmpty()) {
             actionText = anActionEvent.getPresentation().getText();
         }
-        anActionEvent.getPresentation().setIcon(AllIcons.Nodes.Package);
+        anActionEvent.getPresentation().setIcon(DatabaseIcons.Package);
         checkDaoActionVisibility(anActionEvent, actionText);
         super.update(anActionEvent);
     }

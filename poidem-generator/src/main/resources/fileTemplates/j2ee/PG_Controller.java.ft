@@ -1,0 +1,47 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * ${GIT_BRANCH} ${DATE}
+ * @author ${USER}
+ * ${COMMENT}
+ */
+@Controller
+@RequestMapping("/${URL}.htm")
+public class ${NAME}Controller {
+
+    @Autowired
+    private ${NAME}Validator validator;
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String getView() {
+        return "${URL}";
+    }
+
+    @ModelAttribute
+    public void formBackingObject(@RequestParam(required = false) Long id, ModelMap model) {
+
+    }
+
+    @ModelAttribute
+    @RequestMapping(method = RequestMethod.POST)
+    public Object submit(@Valid ${NAME}Dto req, BindingResult bind, ModelMap model) {
+        if (bind.hasErrors()) {
+            return getView();
+        }
+
+        return "closeWindow";
+    }
+}

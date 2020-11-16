@@ -15,6 +15,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.ui.IconManager;
 import com.intellij.util.IncorrectOperationException;
 import git4idea.branch.GitBranchUtil;
+import icons.JavaUltimateIcons;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -45,15 +46,18 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
 //            .addKind("DtoCol", AllIcons.Nodes.Class, "PG_DtoCol.java")
 //            .addKind("Entity", AllIcons.Nodes.Class, "PG_Entity.java")
             .addKind("poidem Enum", AllIcons.Nodes.Enum, "PG_Enum.java")
-            .addKind("poidem EnumConverter Integer", AllIcons.Nodes.Class, "PG_EnumConverterInteger.java")
-            .addKind("poidem EnumConverter Long", AllIcons.Nodes.Class, "PG_EnumConverterLong.java")
-            .addKind("poidem EnumConverter String", AllIcons.Nodes.Class, "PG_EnumConverterString.java")
+            .addKind("poidem EnumConverter Integer", JavaUltimateIcons.Jsf.Converter, "PG_EnumConverterInteger.java")
+            .addKind("poidem EnumConverter Long", JavaUltimateIcons.Jsf.Converter, "PG_EnumConverterLong.java")
+            .addKind("poidem EnumConverter String", JavaUltimateIcons.Jsf.Converter, "PG_EnumConverterString.java")
             .addKind("poidem Interface", AllIcons.Nodes.Interface, "PG_Interface.java")
-            .addKind("poidem Job", AllIcons.Nodes.Class, "PG_Job.java")
+            .addKind("poidem Job", AllIcons.Actions.BuildAutoReloadChanges, "PG_Job.java")
             .addKind("poidem PackageDao", AllIcons.Nodes.Interface, "PG_PackageDao.java")
             .addKind("poidem PackageDaoImpl", AllIcons.Nodes.Class, "PG_PackageDaoImpl.java")
             .addKind("poidem Service", AllIcons.Nodes.Interface, "PG_Service.java")
-            .addKind("poidem ServiceImpl", AllIcons.Nodes.Class, "PG_ServiceImpl.java");
+            .addKind("poidem ServiceImpl", AllIcons.Nodes.Class, "PG_ServiceImpl.java")
+            .addKind("poidem Controller", AllIcons.Nodes.Controller, "PG_Controller.java")
+            .addKind("poidem Validator", JavaUltimateIcons.Jsf.Validator, "PG_Validator.java")
+            .addKind("poidem RestController", AllIcons.Nodes.Controller, "PG_RestController.java");
     }
 
     @Override
