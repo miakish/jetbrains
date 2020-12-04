@@ -1,8 +1,6 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbPackage;
-import com.intellij.icons.AllIcons;
-import com.intellij.ide.highlighter.JavaClassFileType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -18,8 +16,6 @@ import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
 import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
-import ru.poidem.intellij.plugins.ui.PoidemSettings;
-import ru.poidem.intellij.plugins.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import ru.poidem.intellij.plugins.util.Arg;

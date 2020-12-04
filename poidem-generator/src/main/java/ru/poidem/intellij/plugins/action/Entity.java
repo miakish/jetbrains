@@ -1,8 +1,6 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbTable;
-import com.intellij.icons.AllIcons;
-import com.intellij.ide.highlighter.JavaClassFileType;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.components.ServiceManager;
@@ -14,7 +12,6 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
-import icons.DatabaseIcons;
 import icons.JavaUltimateIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
@@ -85,7 +82,9 @@ public class Entity extends AnAction {
 
             Map<String, String> additionalProperties = new HashMap<>();
             additionalProperties.put("IMPORTS", importsField.toString());
-            additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            if(StringUtils.isNotBlank(tableInfo.getTableComment())) {
+                additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            }
             additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             String className = javaName(tableInfo.getTableName(), true);

@@ -1,10 +1,6 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbTable;
-import com.intellij.icons.AllIcons;
-import com.intellij.ide.fileTemplates.FileTemplate;
-import com.intellij.ide.fileTemplates.FileTemplateManager;
-import com.intellij.ide.highlighter.JavaClassFileType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -21,7 +17,6 @@ import com.intellij.psi.impl.file.PsiDirectoryFactory;
 import git4idea.branch.GitBranchUtil;
 import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
-import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.Field;
 import ru.poidem.intellij.plugins.util.TableInfo;
 import org.apache.commons.lang.StringUtils;
@@ -84,7 +79,9 @@ public class DTO extends AnAction {
 
             Map<String, String> additionalProperties = new HashMap<>();
             additionalProperties.put("IMPORTS", importsField.toString());
-            additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            if(StringUtils.isNotBlank(tableInfo.getTableComment())) {
+                additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            }
             additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             StringBuilder columnFields = new StringBuilder();

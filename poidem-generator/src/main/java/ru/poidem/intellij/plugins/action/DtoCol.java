@@ -1,10 +1,6 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbTable;
-import com.intellij.icons.AllIcons;
-import com.intellij.ide.fileTemplates.FileTemplate;
-import com.intellij.ide.fileTemplates.FileTemplateManager;
-import com.intellij.ide.highlighter.JavaClassFileType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -87,7 +83,9 @@ public class DtoCol extends AnAction {
 
             Map<String, String> additionalProperties = new HashMap<>();
             additionalProperties.put("IMPORTS", importsField.toString());
-            additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            if(StringUtils.isNotBlank(tableInfo.getTableComment())) {
+                additionalProperties.put("COMMENT", tableInfo.getTableComment());
+            }
             additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             StringBuilder columnFields = new StringBuilder();

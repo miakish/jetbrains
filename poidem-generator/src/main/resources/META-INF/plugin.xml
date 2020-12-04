@@ -48,10 +48,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <ul>PG_Class.java.ft
+    <ul>
         <li>[Add] New template icons</li>
-        <li>[Fix] Job template</li>
-        <li>[Add] Controller, RestController, Validator templates</li>
+        <li>[Fix] Create Entity for emty comment</li>
     </ul>
     ]]></change-notes>
 
