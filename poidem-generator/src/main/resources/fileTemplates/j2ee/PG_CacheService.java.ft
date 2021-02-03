@@ -1,0 +1,13 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import ru.poidem.orm.dao.GenericObjectDaoManager;
+
+/**
+ * ${GIT_BRANCH} ${DATE}
+ * @author ${USER}
+ * Кэш-сервис {@link ${NAME}Service}
+ */
+public interface Cache${NAME}Service {
+
+}

@@ -38,6 +38,8 @@
                 <li>PackageDaoImpl</li>
                 <li>Service</li>
                 <li>ServiceImpl</li>
+                <li>CacheService</li>
+                <li>CacheServiceImpl</li>
                 <li>Controller</li>
                 <li>RestController</li>
                 <li>Validator</li>
@@ -49,8 +51,8 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>[Add] New template icons</li>
-        <li>[Fix] Create Entity for emty comment</li>
+        <li>[Add] New template CacheService</li>
+        <li>[Add] New template CacheServiceImpl</li>
     </ul>
     ]]></change-notes>
 

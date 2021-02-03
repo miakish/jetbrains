@@ -38,6 +38,8 @@ public class FileTemplatesFactory implements FileTemplateGroupDescriptorFactory 
     descriptor.addTemplate(new FileTemplateDescriptor("PG_PackageDaoImpl.java", AllIcons.Nodes.Class));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Service.java", AllIcons.Nodes.Interface));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_ServiceImpl.java", AllIcons.Nodes.Class));
+    descriptor.addTemplate(new FileTemplateDescriptor("PG_CacheService.java", AllIcons.Nodes.Interface));
+    descriptor.addTemplate(new FileTemplateDescriptor("PG_CacheServiceImpl.java", AllIcons.Nodes.Class));
 
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Controller.java", AllIcons.Nodes.Controller));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Validator.java", JavaUltimateIcons.Jsf.Validator));

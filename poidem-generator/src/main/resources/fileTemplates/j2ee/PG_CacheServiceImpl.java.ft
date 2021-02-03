@@ -1,0 +1,20 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+/**
+ * ${GIT_BRANCH} ${DATE}
+ * @author ${USER}
+ * Реализация {@link Cache${NAME}Service}
+ */
+@Service
+@Cacheable(CachePoidemManager.DEFAULT_CACHE_NAME)
+public class Cache${NAME}ServiceImpl implements Cache${NAME}Service {
+
+	@Autowired
+	private ${NAME}Service service;
+
+}
