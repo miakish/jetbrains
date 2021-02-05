@@ -4,7 +4,7 @@
     <parent>
         <artifactId>poidem-generator-parent</artifactId>
         <groupId>ru.poidem.intellij.plugins</groupId>
-        <version>2.0.8</version>
+        <version>2.0.9</version>
     </parent>
 
     <artifactId>poidem-generator-install</artifactId>

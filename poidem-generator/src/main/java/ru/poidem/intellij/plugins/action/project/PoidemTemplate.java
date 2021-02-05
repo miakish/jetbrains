@@ -55,6 +55,8 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
             .addKind("poidem PackageDaoImpl", AllIcons.Nodes.Class, "PG_PackageDaoImpl.java")
             .addKind("poidem Service", AllIcons.Nodes.Interface, "PG_Service.java")
             .addKind("poidem ServiceImpl", AllIcons.Nodes.Class, "PG_ServiceImpl.java")
+            .addKind("poidem CacheService", AllIcons.Nodes.Interface, "PG_CacheService.java")
+            .addKind("poidem CacheServiceImpl", AllIcons.Nodes.Class, "PG_CacheServiceImpl.java")
             .addKind("poidem Controller", AllIcons.Nodes.Controller, "PG_Controller.java")
             .addKind("poidem Validator", JavaUltimateIcons.Jsf.Validator, "PG_Validator.java")
             .addKind("poidem RestController", AllIcons.Nodes.Controller, "PG_RestController.java");

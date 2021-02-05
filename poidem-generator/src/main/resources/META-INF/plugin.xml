@@ -51,8 +51,8 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>[Add] New template CacheService</li>
-        <li>[Add] New template CacheServiceImpl</li>
+        <li>[fix] template CacheService</li>
+        <li>[fix] template CacheServiceImpl</li>
     </ul>
     ]]></change-notes>
 
