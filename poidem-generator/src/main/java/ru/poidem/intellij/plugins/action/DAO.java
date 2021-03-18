@@ -14,6 +14,7 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
+import git4idea.branch.GitBranchUtil;
 import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import org.apache.commons.lang.StringUtils;
@@ -26,6 +27,7 @@ import ru.poidem.intellij.plugins.util.Util;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.intellij.database.model.DasRoutine.Kind.FUNCTION;
 import static ru.poidem.intellij.plugins.util.Util.*;
 
 /**
@@ -83,29 +85,35 @@ public class DAO extends AnAction {
             StringBuilder packageName = new StringBuilder();
             packageName.append(packageInfo.getSchema()).append(".").append(packageInfo.getName());
             additionalProperties.put("PackageName", packageName.toString());
+            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
-//            for (Routine r:packageInfo.getRoutines()) {
-//                javaTextFile1.append("\n");
-//                if(StringUtils.isNotEmpty(r.getComment())) {
-//                    javaTextFile1.append("    /**").append("\n");
-//                    javaTextFile1.append("     * ").append(r.getComment()).append("\n");
-//                    javaTextFile1.append("     */").append("\n");
-//                }
-//                if (r.getType()==FUNCTION) {
-//                    javaTextFile1.append("    ").append(r.getReturnArg().getJavaType())
-//                            .append(" ").append(r.getName()).append("(");
-//                } else {
-//                    javaTextFile1.append("    ").append("void ").append(r.getName()).append("(");
-//                }
-//                for (int i=0; i<r.getArgs().size();i++) {
-//                    Arg a=r.getArgs().get(i);
-//                    javaTextFile1.append(a.getJavaType()).append(" ").append(a.getName());
-//                    if(i<(r.getArgs().size()-1)) {
-//                        javaTextFile1.append(", ");
-//                    }
-//                }
-//                javaTextFile1.append(");").append("\n");
-//            }
+            StringBuilder fields = new StringBuilder();
+
+            for (Routine r:packageInfo.getRoutines()) {
+
+                if(StringUtils.isNotEmpty(r.getComment())) {
+                    fields.append("    /**").append("\n");
+                    fields.append("     * ").append(r.getComment()).append("\n");
+                    fields.append("     */").append("\n");
+                }
+                if (r.getType()==FUNCTION) {
+                    fields.append("    ").append(r.getReturnArg().getJavaType()!=null?r.getReturnArg().getJavaType():r.getReturnArg().getSQLType().typeName)
+                            .append(" ").append(javaName(r.getName(), false)).append("(");
+                } else {
+                    fields.append("    ").append("void ").append(javaName(r.getName(), false)).append("(");
+                }
+                for (int i=0; i<r.getArgs().size();i++) {
+                    Arg a=r.getArgs().get(i);
+                    fields.append(a.getJavaType()!=null?a.getJavaType():a.getSQLType().typeName)
+                            .append(" ").append(javaName(a.getName(), false));
+                    if(i<(r.getArgs().size()-1)) {
+                        fields.append(", ");
+                    }
+                }
+                fields.append(");").append("\n");
+            }
+
+            additionalProperties.put("FIELDS", fields.toString());
 
             String className = javaName(packageInfo.getName(), true);
             PsiDirectory psiDirectory = PsiDirectoryFactory.getInstance(project).createDirectory(lastChoosedFile);

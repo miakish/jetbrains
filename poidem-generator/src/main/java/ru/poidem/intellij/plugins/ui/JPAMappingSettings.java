@@ -28,7 +28,7 @@ public class JPAMappingSettings implements PersistentStateComponent<JPAMappingSe
     public static List<ConfigurableJPAMapping> getPredefinedJPAMappings() {
         return Arrays.asList(
                 new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "CHAR", "String", "CHAR",null),
-                new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "DATE", "Date","java.sql.Date","@Temporal(TemporalType.TIMESTAMP)"),
+                new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "DATE", "Date","java.util.Date","@Temporal(TemporalType.TIMESTAMP)"),
                 new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "NUMBER", "BigDecimal","java.math.BigDecimal",null),
                 new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "INTEGER", "Long",null,null),
                 new ConfigurableJPAMapping(UUID.randomUUID(), DBMSFamily.ORACLE, "VARCHAR2", "String", null,null),

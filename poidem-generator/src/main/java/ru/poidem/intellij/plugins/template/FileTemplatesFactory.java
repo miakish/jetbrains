@@ -33,7 +33,7 @@ public class FileTemplatesFactory implements FileTemplateGroupDescriptorFactory 
     descriptor.addTemplate(new FileTemplateDescriptor("PG_EnumConverterLong.java", JavaUltimateIcons.Jsf.Converter));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_EnumConverterString.java", JavaUltimateIcons.Jsf.Converter));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Interface.java", AllIcons.Nodes.Interface));
-    descriptor.addTemplate(new FileTemplateDescriptor("PG_Job.java", AllIcons.Actions.BuildAutoReloadChanges));
+    descriptor.addTemplate(new FileTemplateDescriptor("PG_Job.java", AllIcons.Actions.BuildLoadChanges));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_PackageDao.java", AllIcons.Nodes.Interface));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_PackageDaoImpl.java", AllIcons.Nodes.Class));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Service.java", AllIcons.Nodes.Interface));

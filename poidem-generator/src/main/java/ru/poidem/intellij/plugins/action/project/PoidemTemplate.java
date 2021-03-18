@@ -1,5 +1,6 @@
 package ru.poidem.intellij.plugins.action.project;
 
+import com.intellij.dvcs.DvcsUtil;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.ide.actions.JavaCreateTemplateInPackageAction;
@@ -50,7 +51,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
             .addKind("poidem EnumConverter Long", JavaUltimateIcons.Jsf.Converter, "PG_EnumConverterLong.java")
             .addKind("poidem EnumConverter String", JavaUltimateIcons.Jsf.Converter, "PG_EnumConverterString.java")
             .addKind("poidem Interface", AllIcons.Nodes.Interface, "PG_Interface.java")
-            .addKind("poidem Job", AllIcons.Actions.BuildAutoReloadChanges, "PG_Job.java")
+            .addKind("poidem Job", AllIcons.Actions.BuildLoadChanges, "PG_Job.java")
             .addKind("poidem PackageDao", AllIcons.Nodes.Interface, "PG_PackageDao.java")
             .addKind("poidem PackageDaoImpl", AllIcons.Nodes.Class, "PG_PackageDaoImpl.java")
             .addKind("poidem Service", AllIcons.Nodes.Interface, "PG_Service.java")
@@ -76,7 +77,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName) throws IncorrectOperationException {
         final Project project = dir.getProject();
         Map<String, String> additionalProperties = new HashMap<>();
-        additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
+        additionalProperties.put("GIT_BRANCH", git4idea.repo.GitRepositoryManager.getInstance(project).getRepositoryForFile(project.getProjectFile()).getCurrentBranch().getName());
         return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true, additionalProperties);
     }
 

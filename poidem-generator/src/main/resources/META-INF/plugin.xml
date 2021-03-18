@@ -51,8 +51,8 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>[fix] template CacheService</li>
-        <li>[fix] template CacheServiceImpl</li>
+        <li>add generation PackageDao from data base</li>
+        <li>add generation PackageDaoImpl from data base</li>
     </ul>
     ]]></change-notes>
 
