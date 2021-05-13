@@ -51,8 +51,8 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>add generation PackageDao from data base</li>
-        <li>add generation PackageDaoImpl from data base</li>
+        <li>removed dependency 'git4idea' (doesn't work since 2021.1)</li>
+        <li>removed autocomplete tag GIT_BRANCH</li>
     </ul>
     ]]></change-notes>
 

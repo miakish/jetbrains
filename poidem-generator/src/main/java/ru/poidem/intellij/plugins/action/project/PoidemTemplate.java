@@ -1,13 +1,8 @@
 package ru.poidem.intellij.plugins.action.project;
 
-import com.intellij.dvcs.DvcsUtil;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.ide.actions.JavaCreateTemplateInPackageAction;
-import com.intellij.ide.fileTemplates.FileTemplate;
-import com.intellij.ide.fileTemplates.FileTemplateManager;
-import com.intellij.ide.fileTemplates.JavaCreateFromTemplateHandler;
-import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.PsiClass;
@@ -15,7 +10,6 @@ import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import com.intellij.ui.IconManager;
 import com.intellij.util.IncorrectOperationException;
-import git4idea.branch.GitBranchUtil;
 import icons.JavaUltimateIcons;
 import org.jetbrains.annotations.NotNull;
 
@@ -77,7 +71,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName) throws IncorrectOperationException {
         final Project project = dir.getProject();
         Map<String, String> additionalProperties = new HashMap<>();
-        additionalProperties.put("GIT_BRANCH", git4idea.repo.GitRepositoryManager.getInstance(project).getRepositoryForFile(project.getProjectFile()).getCurrentBranch().getName());
+        //additionalProperties.put("GIT_BRANCH", git4idea.repo.GitRepositoryManager.getInstance(project).getRepositoryForFile(project.getProjectFile()).getCurrentBranch().getName());
         return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true, additionalProperties);
     }
 

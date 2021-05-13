@@ -19,7 +19,6 @@ import ru.poidem.intellij.plugins.util.Field;
 import ru.poidem.intellij.plugins.util.TableInfo;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
-import git4idea.branch.GitBranchUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,7 +84,7 @@ public class Entity extends AnAction {
             if(StringUtils.isNotBlank(tableInfo.getTableComment())) {
                 additionalProperties.put("COMMENT", tableInfo.getTableComment());
             }
-            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
+//            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             String className = javaName(tableInfo.getTableName(), true);
 

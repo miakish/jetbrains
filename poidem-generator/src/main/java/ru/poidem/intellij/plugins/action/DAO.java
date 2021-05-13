@@ -14,7 +14,6 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
-import git4idea.branch.GitBranchUtil;
 import icons.DatabaseIcons;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import org.apache.commons.lang.StringUtils;
@@ -85,7 +84,8 @@ public class DAO extends AnAction {
             StringBuilder packageName = new StringBuilder();
             packageName.append(packageInfo.getSchema()).append(".").append(packageInfo.getName());
             additionalProperties.put("PackageName", packageName.toString());
-            additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
+
+            //additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
 
             StringBuilder fields = new StringBuilder();
 
