@@ -85,7 +85,7 @@ public class DAO extends AnAction {
             packageName.append(packageInfo.getSchema()).append(".").append(packageInfo.getName());
             additionalProperties.put("PackageName", packageName.toString());
 
-            //additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
+            additionalProperties.put("GIT_BRANCH", Util.getGitBranch(project));
 
             StringBuilder fields = new StringBuilder();
 

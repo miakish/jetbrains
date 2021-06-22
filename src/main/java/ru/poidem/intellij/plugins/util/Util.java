@@ -8,10 +8,14 @@ import com.intellij.database.util.DasUtil;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.codeStyle.NameUtil;
 import com.twelvemonkeys.util.LinkedSet;
+import git4idea.GitUtil;
+import git4idea.repo.GitRepository;
+import git4idea.repo.GitRepositoryManager;
 import ru.poidem.intellij.plugins.ui.ConfigurableJPAMapping;
 import ru.poidem.intellij.plugins.ui.DBMSFamily;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
@@ -239,5 +243,15 @@ public class Util {
             names.add(dbmsFamily.getName());
         }
         return names;
+    }
+
+    public static String getGitBranch(Project project) {
+        final GitRepositoryManager manager = GitUtil.getRepositoryManager(project);
+        GitRepository repository = manager.getRepositoryForRootQuick(ProjectUtil.guessProjectDir(project));
+        if(repository!=null) {
+            return repository.getCurrentBranch().getName();
+        } else {
+            return "";
+        }
     }
 }
