@@ -23,7 +23,9 @@ import ru.poidem.intellij.plugins.util.PackageInfo;
 import ru.poidem.intellij.plugins.util.Routine;
 import ru.poidem.intellij.plugins.util.Util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.intellij.database.model.DasRoutine.Kind.FUNCTION;
@@ -34,106 +36,70 @@ import static ru.poidem.intellij.plugins.util.Util.*;
  *
  * @author SSalnikov
  */
-public class DAO extends AnAction {
-    private String actionText = StringUtils.EMPTY;
-
+public class DAO extends AbstractAction {
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
-        final Project project = anActionEvent.getProject();
-        if (null == project) {
-            return;
-        }
-
-        final JPAMappingSettings jpaMappingSettings = ServiceManager.getService(project, JPAMappingSettings.class);
-        PsiElement[] psiElements = anActionEvent.getData(LangDataKeys.PSI_ELEMENT_ARRAY);
-        if (psiElements == null || psiElements.length == 0) {
-            return;
-        }
-
-        for (PsiElement psiElement : psiElements) {
-            if (!(psiElement instanceof DbPackage)) {
-                continue;
-            }
-
-            PackageInfo packageInfo = Util.loadPackageInfo((DbPackage) psiElement, jpaMappingSettings);
-            VirtualFile chooseFile = ProjectUtil.guessProjectDir(project);
-            FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
-            if (null != lastChoosedFile) {
-                chooseFile = lastChoosedFile;
-            }
-            lastChoosedFile = FileChooser.chooseFile(descriptor, project, chooseFile);
-            if (null == lastChoosedFile) {
-                return;
-            }
-
-            Map<String, String> additionalProperties = new HashMap<>();
-
-
-            StringBuilder importsField = new StringBuilder();
-            Map<String,String> imports1 = new HashMap<>();
-            for (Routine r:packageInfo.getRoutines()) {
-                for (Arg a:r.getArgs()) {
-                    if(StringUtils.isNotEmpty(a.getJavaImportType()) && !imports1.containsKey(a.getJavaImportType())) {
-                        importsField.append("import ").append(a.getJavaImportType()).append(";").append("\n");
-                        imports1.put(a.getJavaImportType(), "");
-                    }
-                }
-            }
-            additionalProperties.put("IMPORTS", importsField.toString());
-
-            StringBuilder packageName = new StringBuilder();
-            packageName.append(packageInfo.getSchema()).append(".").append(packageInfo.getName());
-            additionalProperties.put("PackageName", packageName.toString());
-
-            //additionalProperties.put("GIT_BRANCH", GitBranchUtil.getCurrentRepository(project).getCurrentBranch().getName());
-
-            StringBuilder fields = new StringBuilder();
-
-            for (Routine r:packageInfo.getRoutines()) {
-
-                if(StringUtils.isNotEmpty(r.getComment())) {
-                    fields.append("    /**").append("\n");
-                    fields.append("     * ").append(r.getComment()).append("\n");
-                    fields.append("     */").append("\n");
-                }
-                if (r.getType()==FUNCTION) {
-                    fields.append("    ").append(r.getReturnArg().getJavaType()!=null?r.getReturnArg().getJavaType():r.getReturnArg().getSQLType().typeName)
-                            .append(" ").append(javaName(r.getName(), false)).append("(");
-                } else {
-                    fields.append("    ").append("void ").append(javaName(r.getName(), false)).append("(");
-                }
-                for (int i=0; i<r.getArgs().size();i++) {
-                    Arg a=r.getArgs().get(i);
-                    fields.append(a.getJavaType()!=null?a.getJavaType():a.getSQLType().typeName)
-                            .append(" ").append(javaName(a.getName(), false));
-                    if(i<(r.getArgs().size()-1)) {
-                        fields.append(", ");
-                    }
-                }
-                fields.append(");").append("\n");
-            }
-
-            additionalProperties.put("FIELDS", fields.toString());
-
-            String className = javaName(packageInfo.getName(), true);
-            PsiDirectory psiDirectory = PsiDirectoryFactory.getInstance(project).createDirectory(lastChoosedFile);
-
-            PsiClass psiClass1 = JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDao.java", true, additionalProperties);
-            PsiClass psiClass2 = JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDaoImpl.java", true, additionalProperties);
-
-            Runnable r = () -> psiDirectory.add(psiClass1).add(psiClass2);
-            WriteCommandAction.runWriteCommandAction(project, r);
-
-        }
+        myActionPerformed(anActionEvent, DbPackage.class);
     }
 
     @Override
     public void update(@NotNull AnActionEvent anActionEvent) {
-        if (actionText.isEmpty()) {
-            actionText = anActionEvent.getPresentation().getText();
+        updateAction(anActionEvent, DatabaseIcons.Package);
+    }
+
+    @Override
+    public void fillAdditionalProperties(PsiElement psiElement, Map<String, String> additionalProperties, JPAMappingSettings jpaMappingSettings) {
+        PackageInfo packageInfo = Util.loadPackageInfo((DbPackage) psiElement, jpaMappingSettings);
+        StringBuilder importsField = new StringBuilder();
+        Map<String,String> imports1 = new HashMap<>();
+        for (Routine r:packageInfo.getRoutines()) {
+            for (Arg a:r.getArgs()) {
+                if(StringUtils.isNotEmpty(a.getJavaImportType()) && !imports1.containsKey(a.getJavaImportType())) {
+                    importsField.append("import ").append(a.getJavaImportType()).append(";").append("\n");
+                    imports1.put(a.getJavaImportType(), "");
+                }
+            }
         }
-        anActionEvent.getPresentation().setIcon(DatabaseIcons.Package);
-        checkDaoActionVisibility(anActionEvent, actionText);
-        super.update(anActionEvent);
+        additionalProperties.put("IMPORTS", importsField.toString());
+
+        StringBuilder packageName = new StringBuilder();
+        packageName.append(packageInfo.getSchema()).append(".").append(packageInfo.getName());
+        additionalProperties.put("PackageName", packageName.toString());
+
+        StringBuilder fields = new StringBuilder();
+
+        for (Routine r:packageInfo.getRoutines()) {
+
+            if(StringUtils.isNotEmpty(r.getComment())) {
+                fields.append("    /**").append("\n");
+                fields.append("     * ").append(r.getComment()).append("\n");
+                fields.append("     */").append("\n");
+            }
+            if (r.getType()==FUNCTION) {
+                fields.append("    ").append(r.getReturnArg().getJavaType()!=null?r.getReturnArg().getJavaType():r.getReturnArg().getSQLType().typeName)
+                        .append(" ").append(javaName(r.getName(), false)).append("(");
+            } else {
+                fields.append("    ").append("void ").append(javaName(r.getName(), false)).append("(");
+            }
+            for (int i=0; i<r.getArgs().size();i++) {
+                Arg a=r.getArgs().get(i);
+                fields.append(a.getJavaType()!=null?a.getJavaType():a.getSQLType().typeName)
+                        .append(" ").append(javaName(a.getName(), false));
+                if(i<(r.getArgs().size()-1)) {
+                    fields.append(", ");
+                }
+            }
+            fields.append(");").append("\n");
+        }
+
+        additionalProperties.put("FIELDS", fields.toString());
+    }
+
+    @Override
+    public List<PsiClass> getPsiClassList(PsiDirectory psiDirectory, Map<String, String> additionalProperties) {
+        List<PsiClass> psiClassList = new ArrayList<>();
+        psiClassList.add(JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDao.java", true, additionalProperties));
+        psiClassList.add(JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDaoImpl.java", true, additionalProperties));
+        return psiClassList;
     }
 }

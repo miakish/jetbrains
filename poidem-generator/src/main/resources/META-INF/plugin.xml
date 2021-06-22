@@ -51,14 +51,15 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>removed dependency 'git4idea' (doesn't work since 2021.1)</li>
-        <li>removed autocomplete tag GIT_BRANCH</li>
+        <li>return dependency 'git4idea' (doesn't work since 2021.1)</li>
+        <li>return tag GIT_BRANCH</li>
     </ul>
     ]]></change-notes>
 
     <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.ultimate</depends>
     <depends>com.intellij.modules.database</depends>
+    <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
