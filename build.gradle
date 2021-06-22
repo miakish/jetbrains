@@ -21,8 +21,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version 'IU-2021.1'
-    pluginName 'Poidem generator'
-    //'git4idea'
+    pluginName 'poidem-generator'
     plugins = ['java', 'DatabaseTools', 'git4idea']
     updateSinceUntilBuild false
 }
