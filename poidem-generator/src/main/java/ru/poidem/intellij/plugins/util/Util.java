@@ -120,23 +120,6 @@ public class Util {
         return packageInfo;
     }
 
-    public static void addGetterSetter(Set<Field> fields, StringBuilder javaTextFile) {
-        for (Field field : fields) {
-            javaTextFile.append("\n");
-
-            javaTextFile.append("    public ").append(field.getJavaType()).append(" get").append(javaName(field.getName(), true)).append("() {").append("\n");
-            javaTextFile.append("        return this.").append(javaName(field.getName(), false)).append(";").append("\n");
-            javaTextFile.append("    }").append("\n");
-
-            javaTextFile.append("\n");
-
-            javaTextFile.append("    public void set").append(javaName(field.getName(), true)).append("(").append(field.getJavaType()).append(" ").append(javaName(field.getName(), false)).append(") {").append("\n");
-            javaTextFile.append("        this.").append(javaName(field.getName(), false)).append(" = ").append(javaName(field.getName(), false)).append(";").append("\n");
-            javaTextFile.append("    }").append("\n");
-        }
-
-    }
-
     public static String javaName(String str, Boolean capitalizeFirstLetter) {
         String[] strings = NameUtil.splitNameIntoWords(str);
         StringBuilder name = new StringBuilder();

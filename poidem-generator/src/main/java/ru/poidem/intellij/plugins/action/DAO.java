@@ -1,23 +1,16 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbPackage;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.fileChooser.FileChooser;
-import com.intellij.openapi.fileChooser.FileChooserDescriptor;
-import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectUtil;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
-import com.intellij.psi.impl.file.PsiDirectoryFactory;
+import com.intellij.psi.JavaDirectoryService;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiElement;
 import icons.DatabaseIcons;
-import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
+import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.Arg;
 import ru.poidem.intellij.plugins.util.PackageInfo;
 import ru.poidem.intellij.plugins.util.Routine;
@@ -29,7 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.intellij.database.model.DasRoutine.Kind.FUNCTION;
-import static ru.poidem.intellij.plugins.util.Util.*;
+import static ru.poidem.intellij.plugins.util.Util.checkDaoActionVisibility;
+import static ru.poidem.intellij.plugins.util.Util.javaName;
 
 /**
  * 09.11.2020
@@ -37,6 +31,7 @@ import static ru.poidem.intellij.plugins.util.Util.*;
  * @author SSalnikov
  */
 public class DAO extends AbstractAction {
+
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
         myActionPerformed(anActionEvent, DbPackage.class);
@@ -45,10 +40,12 @@ public class DAO extends AbstractAction {
     @Override
     public void update(@NotNull AnActionEvent anActionEvent) {
         updateAction(anActionEvent, DatabaseIcons.Package);
+        checkDaoActionVisibility(anActionEvent, actionText);
+        super.update(anActionEvent);
     }
 
     @Override
-    public void fillAdditionalProperties(PsiElement psiElement, Map<String, String> additionalProperties, JPAMappingSettings jpaMappingSettings) {
+    public void fillAdditionalProperties(PsiElement psiElement, Map<String, String> additionalProperties, JPAMappingSettings jpaMappingSettings, PoidemSettings poidemSettings) {
         PackageInfo packageInfo = Util.loadPackageInfo((DbPackage) psiElement, jpaMappingSettings);
         StringBuilder importsField = new StringBuilder();
         Map<String,String> imports1 = new HashMap<>();
@@ -96,7 +93,9 @@ public class DAO extends AbstractAction {
     }
 
     @Override
-    public List<PsiClass> getPsiClassList(PsiDirectory psiDirectory, Map<String, String> additionalProperties) {
+    public List<PsiClass> loadTemplates(PsiElement psiElement, PsiDirectory psiDirectory, Map<String, String> additionalProperties, JPAMappingSettings jpaMappingSettings) {
+        PackageInfo packageInfo = Util.loadPackageInfo((DbPackage) psiElement, jpaMappingSettings);
+        String className = javaName(packageInfo.getName(), true);
         List<PsiClass> psiClassList = new ArrayList<>();
         psiClassList.add(JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDao.java", true, additionalProperties));
         psiClassList.add(JavaDirectoryService.getInstance().createClass(psiDirectory, className, "PG_PackageDaoImpl.java", true, additionalProperties));
