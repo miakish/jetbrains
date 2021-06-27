@@ -12,6 +12,7 @@ import com.intellij.ui.IconManager;
 import com.intellij.util.IncorrectOperationException;
 import icons.JavaUltimateIcons;
 import org.jetbrains.annotations.NotNull;
+import ru.poidem.intellij.plugins.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
     protected final PsiClass doCreate(PsiDirectory dir, String className, String templateName) throws IncorrectOperationException {
         final Project project = dir.getProject();
         Map<String, String> additionalProperties = new HashMap<>();
-        //additionalProperties.put("GIT_BRANCH", git4idea.repo.GitRepositoryManager.getInstance(project).getRepositoryForFile(project.getProjectFile()).getCurrentBranch().getName());
+        additionalProperties.put("GIT_BRANCH", Util.getGitBranch(project));
         return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true, additionalProperties);
     }
 
