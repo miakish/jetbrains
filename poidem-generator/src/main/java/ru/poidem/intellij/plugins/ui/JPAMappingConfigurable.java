@@ -19,7 +19,7 @@ public class JPAMappingConfigurable implements Configurable {
     private JPAMappingPanel jpaMappingPanel;
 
     public JPAMappingConfigurable(Project project) {
-        this.jpaMappingSettings = ServiceManager.getService(project, JPAMappingSettings.class);
+        this.jpaMappingSettings = project.getService(JPAMappingSettings.class);
     }
 
     @Nls(capitalization = Nls.Capitalization.Title)
