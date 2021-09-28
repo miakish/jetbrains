@@ -51,8 +51,7 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>fix new error - isUnderSourceRootOfType(@NotNull VirtualFile fileOrDir, @NotNull Set<? extends JpsModuleSourceRootType<?>> rootTypes)</li>
-        <li></li>
+        <li>delete deprecated metods</li>
     </ul>
     ]]></change-notes>
 
