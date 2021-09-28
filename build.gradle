@@ -4,11 +4,7 @@ plugins {
 }
 
 group 'ru.poidem.intellij.plugins'
-<<<<<<< Updated upstream
 version '2.0.15'
-=======
-version '2.0.14'
->>>>>>> Stashed changes
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
