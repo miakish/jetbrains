@@ -132,7 +132,7 @@ public class JPAMappingPanel {
             }
 
             @Override
-            public void edit(@NotNull ConfigurableJPAMapping browser, @NotNull Function<ConfigurableJPAMapping, ConfigurableJPAMapping> mutator, boolean isAdd) {
+            public void edit(@NotNull ConfigurableJPAMapping item, @NotNull Function<? super ConfigurableJPAMapping, ? extends ConfigurableJPAMapping> mutator, boolean isAdd) {
                 /*BrowserSpecificSettings settings = cloneSettings(browser);
                 if (settings != null && ShowSettingsUtil.getInstance().editConfigurable(browsersTable, settings.createConfigurable())) {
                     mutator.fun(browser).setSpecificSettings(settings);

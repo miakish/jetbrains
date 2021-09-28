@@ -27,7 +27,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
     public static final String ACTION_TITLE = "New Poidem file";
 
     public PoidemTemplate() {
-        super("Poidem Generator", "Creates a Poidem file from the specified template", IconManager.getInstance().getIcon("/META-INF/pluginIcon.svg", PoidemTemplate.class),false);
+        super("Poidem Generator", "Creates a Poidem file from the specified template", IconManager.getInstance().getIcon("/META-INF/pluginIcon.svg", PoidemTemplate.class),true);
     }
 
     @Override

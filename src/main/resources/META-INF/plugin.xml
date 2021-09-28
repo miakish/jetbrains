@@ -51,7 +51,6 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>fix new errors</li>
         <li>delete deprecated metods</li>
     </ul>
     ]]></change-notes>

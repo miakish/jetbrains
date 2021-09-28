@@ -1,6 +1,10 @@
-.gradle/
-.idea/
-target/
+# Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ project files
+.idea
 *.iml
-/poidem-generator/build/
-/poidem-generator-install/src/site/markdown/
+out
+gen
+build
+.gradle
+.sandbox
