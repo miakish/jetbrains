@@ -19,7 +19,7 @@ public class PoidemConfigurable implements Configurable {
     private PoidemPanel poidemPanel;
 
     public PoidemConfigurable(Project project) {
-        this.poidemSettings = ServiceManager.getService(project, PoidemSettings.class);
+        this.poidemSettings = project.getService(PoidemSettings.class);
     }
 
     @Nls(capitalization = Nls.Capitalization.Title)

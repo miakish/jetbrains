@@ -4,16 +4,12 @@ import com.intellij.icons.AllIcons;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.ide.actions.JavaCreateTemplateInPackageAction;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import com.intellij.ui.IconManager;
 import com.intellij.util.IncorrectOperationException;
-import git4idea.GitUtil;
-import git4idea.repo.GitRepository;
-import git4idea.repo.GitRepositoryManager;
 import icons.JavaUltimateIcons;
 import org.jetbrains.annotations.NotNull;
 import ru.poidem.intellij.plugins.util.Util;
@@ -31,7 +27,7 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
     public static final String ACTION_TITLE = "New Poidem file";
 
     public PoidemTemplate() {
-        super("Poidem Generator", "Creates a Poidem file from the specified template", IconManager.getInstance().getIcon("/META-INF/pluginIcon.svg", PoidemTemplate.class),false);
+        super("Poidem Generator", "Creates a Poidem file from the specified template", IconManager.getInstance().getIcon("/META-INF/pluginIcon.svg", PoidemTemplate.class),true);
     }
 
     @Override

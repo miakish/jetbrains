@@ -51,8 +51,8 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>return dependency 'git4idea' (doesn't work since 2021.1)</li>
-        <li>return tag GIT_BRANCH</li>
+        <li>fix new errors</li>
+        <li>delete deprecated metods</li>
     </ul>
     ]]></change-notes>
 
