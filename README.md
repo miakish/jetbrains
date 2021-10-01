@@ -4,7 +4,7 @@ Generate JPA Entity Poidem from database table
 
 ## Usage
 
-![Right click Poidem Generator Entity](images/right-click-poidem-generator-entity.png "Right click POJO Generator Entity")
+![Right click Poidem Generator Entity](images/right-click-poidem-generator-entity.png "Right click POJO Poidem Generator Entity")
 
 1. Right click on the table for generate a JPA Entity Poidem or a Data Transfert Object Poidem
 2. Choose the path where to store the java file
