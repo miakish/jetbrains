@@ -7,6 +7,7 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -68,9 +69,11 @@ public abstract class AbstractAction extends AnAction {
             fillAdditionalProperties(psiElement, additionalProperties, jpaMappingSettings, poidemSettings);
 
             PsiDirectory psiDirectory = PsiDirectoryFactory.getInstance(project).createDirectory(lastChoosedFile);
-            //psiClassList.forEach(psiDirectory::add);
-            Runnable r = () -> loadTemplates(psiElement, psiDirectory, additionalProperties, jpaMappingSettings);
-            WriteCommandAction.runWriteCommandAction(project, r);
+            List<PsiClass> psiClassList = loadTemplates(psiElement, psiDirectory, additionalProperties, jpaMappingSettings);
+            for (PsiClass pc: psiClassList) {
+                FileEditorManager fileEditorManager = FileEditorManager.getInstance(project);
+                fileEditorManager.openFile(pc.getContainingFile().getVirtualFile(), true, true);
+            }
         }
     }
 

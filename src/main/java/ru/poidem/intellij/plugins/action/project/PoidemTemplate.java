@@ -76,4 +76,9 @@ public class   PoidemTemplate extends JavaCreateTemplateInPackageAction<PsiClass
         return JavaDirectoryService.getInstance().createClass(dir, className, templateName, true, additionalProperties);
     }
 
+    @Override
+    public boolean startInWriteAction() {
+        return false;
+    }
+
 }

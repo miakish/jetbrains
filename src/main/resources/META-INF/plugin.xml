@@ -51,7 +51,7 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>delete deprecated metods</li>
+        <li>fix error "java.lang.Throwable: Assertion failed"</li>
     </ul>
     ]]></change-notes>
 
