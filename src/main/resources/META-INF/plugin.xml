@@ -51,7 +51,7 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>fix error "java.lang.Throwable: Assertion failed"</li>
+        <li>fix deprecated method DasTypedObject.getDataType()</li>
     </ul>
     ]]></change-notes>
 
