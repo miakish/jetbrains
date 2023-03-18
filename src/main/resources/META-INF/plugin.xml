@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>ru.poidem.intellij.plugins.poidem-generator</id>
     <name>Poidem Generator</name>
-    <vendor email="ssalnikov@poidem.ru" url="">SSalnikov</vendor>
+    <vendor email="miakish06@gmail.com" url="">SSalnikov</vendor>
 
     <description><![CDATA[
     <h1>Сreating Java classes using templates inside the plugin</h1>
