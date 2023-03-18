@@ -1,13 +1,13 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.7.2'
+    id 'org.jetbrains.intellij' version '1.13.2'
 }
 
 group 'ru.poidem.intellij.plugins'
-version '2.0.16'
+version '2.1.0'
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenLocal()
@@ -15,19 +15,19 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
     compileOnly('org.projectlombok:lombok:1.18.20')
     annotationProcessor('org.projectlombok:lombok:1.18.20')
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version 'IU-2021.2'
-    pluginName 'poidem-generator'
-    plugins = ['java', 'DatabaseTools', 'git4idea']
-    updateSinceUntilBuild false
+    version = 'IU-2022.3.3'
+    pluginName = 'poidem-generator'
+    plugins = ['java', 'DatabaseTools', 'Git4Idea']
+    updateSinceUntilBuild = false
 }
 
 patchPluginXml {
-    sinceBuild '212'
+    sinceBuild = '223'
 }
