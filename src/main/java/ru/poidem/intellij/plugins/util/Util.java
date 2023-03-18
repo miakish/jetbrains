@@ -12,7 +12,6 @@ import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.codeStyle.NameUtil;
-import com.twelvemonkeys.util.LinkedSet;
 import git4idea.GitUtil;
 import git4idea.repo.GitRepository;
 import git4idea.repo.GitRepositoryManager;
@@ -35,8 +34,8 @@ import static com.intellij.database.model.DasRoutine.Kind.FUNCTION;
 public class Util {
     public static VirtualFile lastChoosedFile;
 
-    public static LinkedSet<Field> getFields(DbTable dbTable, JPAMappingSettings jpaMappingSettings) {
-        LinkedSet<Field> fields = new LinkedSet<>();
+    public static Set<Field> getFields(DbTable dbTable, JPAMappingSettings jpaMappingSettings) {
+        HashSet<Field> fields = new HashSet<>();
         List<ConfigurableJPAMapping> jpaMappings = jpaMappingSettings.getJpaMappings();
         for (DasColumn column : DasUtil.getColumns(dbTable)) {
             Field field = new Field();
