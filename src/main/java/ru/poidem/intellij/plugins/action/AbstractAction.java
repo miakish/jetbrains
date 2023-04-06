@@ -3,7 +3,6 @@ package ru.poidem.intellij.plugins.action;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
@@ -15,13 +14,11 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.impl.file.PsiDirectoryFactory;
-import git4idea.GitUtil;
-import git4idea.repo.GitRepository;
-import git4idea.repo.GitRepositoryManager;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
+import ru.poidem.intellij.plugins.util.Util;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -57,14 +54,7 @@ public abstract class AbstractAction extends AnAction {
             fileChoose(project);
 
             Map<String, String> additionalProperties = new HashMap<>();
-            final GitRepositoryManager manager = GitUtil.getRepositoryManager(project);
-            GitRepository repository = manager.getRepositoryForRootQuick(ProjectUtil.guessProjectDir(project));
-            String gitBranch;
-            if(repository!=null) {
-                gitBranch = repository.getCurrentBranch().getName();
-            } else {
-                gitBranch = "";
-            }
+            String gitBranch = Util.getGitBranch(project);
             additionalProperties.put("GIT_BRANCH", gitBranch);
             fillAdditionalProperties(psiElement, additionalProperties, jpaMappingSettings, poidemSettings);
 
