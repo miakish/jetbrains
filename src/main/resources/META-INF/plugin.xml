@@ -51,7 +51,7 @@
 
     <change-notes><![CDATA[
     <ul>
-        <li>fix deprecated method DasTypedObject.getDataType()</li>
+        <li>fix deprecated IconManager.getInstance()->IconLoader</li>
     </ul>
     ]]></change-notes>
 
