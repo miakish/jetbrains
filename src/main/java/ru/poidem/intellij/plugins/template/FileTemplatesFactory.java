@@ -4,7 +4,7 @@ import com.intellij.icons.AllIcons;
 import com.intellij.ide.fileTemplates.FileTemplateDescriptor;
 import com.intellij.ide.fileTemplates.FileTemplateGroupDescriptor;
 import com.intellij.ide.fileTemplates.FileTemplateGroupDescriptorFactory;
-import com.intellij.ui.IconManager;
+import com.intellij.openapi.util.IconLoader;
 import icons.DatabaseIcons;
 import icons.JavaUltimateIcons;
 
@@ -18,7 +18,7 @@ import javax.swing.*;
 public class FileTemplatesFactory implements FileTemplateGroupDescriptorFactory {
 
   public FileTemplateGroupDescriptor getFileTemplatesDescriptor() {
-    Icon i = IconManager.getInstance().getIcon("/META-INF/pluginIcon.svg", FileTemplatesFactory.class);
+    Icon i = IconLoader.getIcon("/META-INF/pluginIcon.svg", FileTemplatesFactory.class);
     FileTemplateGroupDescriptor descriptor = new FileTemplateGroupDescriptor("Poidem Generator", i);
     descriptor.addTemplate(new FileTemplateDescriptor("PG_Class.java", AllIcons.Nodes.Class));
     descriptor.addTemplate(new FileTemplateDescriptor("PG_DbEnumInteger.java", AllIcons.Nodes.Enum));
