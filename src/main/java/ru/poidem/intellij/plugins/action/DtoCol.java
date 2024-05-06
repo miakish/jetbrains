@@ -1,27 +1,18 @@
 package ru.poidem.intellij.plugins.action;
 
 import com.intellij.database.psi.DbTable;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.fileChooser.FileChooser;
-import com.intellij.openapi.fileChooser.FileChooserDescriptor;
-import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectUtil;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
-import com.intellij.psi.impl.file.PsiDirectoryFactory;
+import com.intellij.psi.JavaDirectoryService;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiElement;
 import icons.DatabaseIcons;
+import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
 import ru.poidem.intellij.plugins.util.Field;
 import ru.poidem.intellij.plugins.util.TableInfo;
-import org.apache.commons.lang.StringUtils;
-import org.jetbrains.annotations.NotNull;
-import ru.poidem.intellij.plugins.util.Util;
 
 import java.util.*;
 

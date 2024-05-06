@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'ru.poidem.intellij.plugins'
-version '2.1.1'
+version '2.1.2'
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
