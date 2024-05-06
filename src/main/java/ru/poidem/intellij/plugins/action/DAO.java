@@ -7,7 +7,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import icons.DatabaseIcons;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import ru.poidem.intellij.plugins.ui.JPAMappingSettings;
 import ru.poidem.intellij.plugins.ui.PoidemSettings;
